@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+List<DataRow> rows = List<DataRow>.generate(
+  10,
+  (index) => DataRow(
+    cells: <DataCell>[
+      DataCell(Text(index.toString())),
+      DataCell(Text('$index-1 cell')),
+      DataCell(Text('$index-2 cell')),
+    ],
+  ),
+);
+
 class DataTablePage extends StatefulWidget {
   const DataTablePage({super.key});
 
@@ -10,17 +21,7 @@ class DataTablePage extends StatefulWidget {
 class _DataTablePageState extends State<DataTablePage> {
   static const int numItems = 10;
   List<bool> selected = List<bool>.generate(numItems, (int index) => false);
-
-  List<DataRow> rows = List<DataRow>.generate(
-    numItems,
-    (index) => DataRow(
-      cells: <DataCell>[
-        DataCell(Text(index.toString())),
-        DataCell(Text('$index-1 cell')),
-        DataCell(Text('$index-2 cell')),
-      ],
-    ),
-  );
+  final DataTableSource _dataTableSource = MyData();
 
   int _currentSortColumn = 0;
   bool _isSortAsc = true;
@@ -30,30 +31,40 @@ class _DataTablePageState extends State<DataTablePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('DataTable / PaginatedDataTable widgets')),
-      body: Column(
-        children: [
-          _dataTable(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DataTable(columns: _createColumns(), rows: _createRows()),
+            const SizedBox(height: 10),
+            PaginatedDataTable(
+              columns: [
+                DataColumn(label: Text('#')),
+                DataColumn(label: Text('1 column')),
+                DataColumn(label: Text('2 column')),
+              ],
+              source: _dataTableSource,
+              columnSpacing: 100,
+              horizontalMargin: 10,
+              rowsPerPage: 4,
+              showCheckboxColumn: true,
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Widget _dataTable() {
-    return DataTable(columns: _createColumns(), rows: _createRows());
   }
 
   List<DataRow> _createRows() {
     return List<DataRow>.generate(
       numItems,
       (index) => DataRow(
-        cells: rows[index].cells,
-        selected: selected[index],
-        onSelectChanged: (bool? sel) {
-          setState(() {
-            selected[index] = sel!;
-          });
-        }
-      ),
+          cells: rows[index].cells,
+          selected: selected[index],
+          onSelectChanged: (bool? sel) {
+            setState(() {
+              selected[index] = sel!;
+            });
+          }),
     );
   }
 
@@ -86,4 +97,20 @@ class _DataTablePageState extends State<DataTablePage> {
       DataColumn(label: Text('2 column')),
     ];
   }
+}
+
+class MyData extends DataTableSource {
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => rows.length;
+
+  @override
+  DataRow? getRow(int index) {
+    return rows[index];
+  }
+
+  @override
+  int get selectedRowCount => 0;
 }
