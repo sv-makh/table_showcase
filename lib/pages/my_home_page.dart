@@ -24,6 +24,12 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('data_table_2'),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/responsive_table');
+              },
+              child: Text('responsive_table'),
+            ),
           ],
         ),
       ),

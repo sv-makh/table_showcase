@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tables_showcase/pages/data_table_2_page.dart';
 import 'package:tables_showcase/pages/data_table_page.dart';
 import 'package:tables_showcase/pages/my_home_page.dart';
+import 'package:tables_showcase/pages/responsive_table_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const MyHomePage(),
         '/data_table': (context) => const DataTablePage(),
         '/data_table_2': (context) => const DataTable2Page(),
+        '/responsive_table': (context) => ResponsiveTablePage(),
       },
     );
   }
