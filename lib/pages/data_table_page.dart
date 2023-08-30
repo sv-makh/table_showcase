@@ -30,14 +30,19 @@ class _DataTablePageState extends State<DataTablePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('DataTable / PaginatedDataTable widgets')),
+      appBar:
+          AppBar(title: const Text('DataTable / PaginatedDataTable widgets')),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            DataTable(columns: _createColumns(), rows: _createRows()),
+            DataTable(
+              columns: _createColumns(),
+              rows: _createRows(),
+              dataRowMaxHeight: 60,
+            ),
             const SizedBox(height: 10),
             PaginatedDataTable(
-              columns: [
+              columns: const [
                 DataColumn(label: Text('#')),
                 DataColumn(label: Text('1 column')),
                 DataColumn(label: Text('2 column')),
@@ -93,8 +98,8 @@ class _DataTablePageState extends State<DataTablePage> {
               _isSortAsc = !_isSortAsc;
             });
           }),
-      DataColumn(label: Text('1 column')),
-      DataColumn(label: Text('2 column')),
+      const DataColumn(label: Text('1 column')),
+      const DataColumn(label: Text('2 column')),
     ];
   }
 }
