@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tables_showcase/pages/scrollable_table_view/scrollable_table_view_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tables_showcase/pages/syncfusion_page.dart';
+import 'package:tables_showcase/pages/syncfusion_datagrid/syncfusion_page.dart';
 
 import 'l10n/generated/l10n.dart';
 
