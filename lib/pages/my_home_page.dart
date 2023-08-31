@@ -43,6 +43,18 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('scrollable_table_view'),
             ),
+/*            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/paged_datatable_page');
+              },
+              child: Text('paged_datatable_page'),
+            ),*/
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/syncfusion_flutter_datagrid');
+              },
+              child: Text('syncfusion_flutter_datagrid'),
+            ),
           ],
         ),
       ),
