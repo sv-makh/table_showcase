@@ -40,11 +40,13 @@ dependencies:
   crud_table: ^0.0.6
   json_annotation: ^4.8.1
   scrollable_table_view: ^2.0.2
-  paged_datatable: ^1.4.3
   google_fonts: ^5.1.0
   darq: ^2.0.0
   faker: ^2.1.0
   syncfusion_flutter_datagrid: ^22.2.11
+  flutter_spreadsheet_ui: ^0.0.5
+  pluto_grid: ^7.0.2
+  davi: ^3.4.1
 
 dev_dependencies:
   flutter_test:

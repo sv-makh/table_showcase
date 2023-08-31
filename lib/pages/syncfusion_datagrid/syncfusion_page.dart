@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+//https://pub.dev/packages/syncfusion_flutter_datagrid
+
 /// The home page of the application which hosts the datagrid.
 class SyncfusionPage extends StatefulWidget {
   /// Creates the home page.
@@ -57,13 +59,13 @@ class _SyncfusionPageState extends State<SyncfusionPage> {
               columnResizeMode: resizeMode
                   ? ColumnResizeMode.onResize
                   : ColumnResizeMode.onResizeEnd,
-              onColumnResizeStart: (ColumnResizeStartDetails details) {
+/*              onColumnResizeStart: (ColumnResizeStartDetails details) {
                 // Disable resizing for the `id` column.
                 if (details.column.columnName == 'id') {
                   return false;
                 }
                 return true;
-              },
+              },*/
               onColumnResizeUpdate: (ColumnResizeUpdateDetails details) {
                 setState(() {
                   columnWidths[details.column.columnName] = details.width;

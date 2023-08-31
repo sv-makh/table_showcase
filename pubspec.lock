@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  axis_layout:
+    dependency: transitive
+    description:
+      name: axis_layout
+      sha256: "9ba44f279f39121065d811e72da892de86f5613d68eb0b295f60d021ea8f2a59"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -33,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  calendar_date_picker2:
-    dependency: transitive
-    description:
-      name: calendar_date_picker2
-      sha256: b91d51b8d0928f9745e0113e86d06b161ac48c52b7530337a3b77283cbc6be27
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.3"
   characters:
     dependency: transitive
     description:
@@ -105,14 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.7"
-  equatable:
-    dependency: transitive
+  davi:
+    dependency: "direct main"
     description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      name: davi
+      sha256: "4105870281c4c33e8e017e21e212b96fd2637b4c1a35b2a56f14aaa4acdf6f0d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.5"
+    version: "3.4.1"
   fake_async:
     dependency: transitive
     description:
@@ -154,10 +154,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_hooks
-      sha256: "6ae13b1145c589112cbd5c4fda6c65908993a9cb18d4f82042e9c28dd9fbf611"
+      sha256: "6a126f703b89499818d73305e4ce1e3de33b4ae1c5512e3b8eab4b986f46774c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.1"
+    version: "0.18.6"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -166,11 +166,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_riverpod:
     dependency: transitive
     description:
@@ -179,6 +174,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  flutter_spreadsheet_ui:
+    dependency: "direct main"
+    description:
+      name: flutter_spreadsheet_ui
+      sha256: "5df6adfc015b42a11fb04a618c94a42881ec4e6fe9e0b1d1938fe2c5a3db0e9c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -224,6 +227,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  linked_scroll_controller:
+    dependency: transitive
+    description:
+      name: linked_scroll_controller
+      sha256: e6020062bcf4ffc907ee7fd090fa971e65d8dfaac3c62baf601a3ced0b37986a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:
@@ -256,22 +267,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  paged_datatable:
-    dependency: "direct main"
-    description:
-      name: paged_datatable
-      sha256: "89153bf665eee919b2670badd652487a9b7059afb547863c6da5c507d6f48d33"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.3"
   path:
     dependency: transitive
     description:
@@ -344,6 +339,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
+  pluto_grid:
+    dependency: "direct main"
+    description:
+      name: pluto_grid
+      sha256: e77c34a33dd9d74abbe20ba1df96474dded150dd042c7f7495be1bc2c26bd37f
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.2"
   printx:
     dependency: transitive
     description:
@@ -352,14 +355,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.5"
   responsive_table:
     dependency: "direct main"
     description:
@@ -376,6 +371,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   scrollable_table_view:
     dependency: "direct main"
     description:

@@ -49,11 +49,30 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('paged_datatable_page'),
             ),*/
+          const Divider(),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/syncfusion_flutter_datagrid');
               },
               child: Text('syncfusion_flutter_datagrid'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/spreadsheet_ui');
+              },
+              child: Text('flutter_spreadsheet_ui'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pluto_grid');
+              },
+              child: Text('pluto_grid'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/davi');
+              },
+              child: Text('davi'),
             ),
           ],
         ),
