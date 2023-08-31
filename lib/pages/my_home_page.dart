@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  const MyHomePage();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,8 @@ class MyHomePage extends StatelessWidget {
               child: Text('DataTable / PaginatedDataTable widgets'),
             ),
             const SizedBox(height: 10),
-            const Text('Packages:'),
+            const Text('Packages:', style: TextStyle(fontWeight: FontWeight.bold),),
+            const SizedBox(height: 10),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/data_table_2');
@@ -29,6 +30,18 @@ class MyHomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/responsive_table');
               },
               child: Text('responsive_table'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/crud_table');
+              },
+              child: Text('crud_table'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/scrollable_table_view');
+              },
+              child: Text('scrollable_table_view'),
             ),
           ],
         ),

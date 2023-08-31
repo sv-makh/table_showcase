@@ -4,7 +4,7 @@ import 'package:data_table_2/data_table_2.dart';
 //https://pub.dev/packages/data_table_2
 
 class DataTable2Page extends StatefulWidget {
-  const DataTable2Page({super.key});
+  const DataTable2Page();
 
   @override
   State<DataTable2Page> createState() => _DataTable2PageState();

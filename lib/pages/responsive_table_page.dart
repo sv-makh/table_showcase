@@ -1,23 +1,8 @@
-/*import 'package:flutter/material.dart';
-import 'package:responsive_table/responsive_table.dart';
-
-class ResponsiveTablePage extends StatefulWidget {
-  const ResponsiveTablePage({super.key});
-
-  @override
-  State<ResponsiveTablePage> createState() => _ResponsiveTablePageState();
-}
-
-class _ResponsiveTablePageState extends State<ResponsiveTablePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}*/
-
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:responsive_table/responsive_table.dart';
+
+//https://pub.dev/packages/responsive_table
 
 class ResponsiveTablePage extends StatefulWidget {
   ResponsiveTablePage({Key? key}) : super(key: key);
@@ -81,9 +66,9 @@ class _ResponsiveTablePageState extends State<ResponsiveTablePage> {
     _expanded = List.generate(_currentPerPage!, (index) => false);
 
     setState(() => _isLoading = true);
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(Duration(seconds: 0)).then((value) {
       _sourceOriginal.clear();
-      _sourceOriginal.addAll(_generateData(n: random.nextInt(10000)));
+      _sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
       _sourceFiltered = _sourceOriginal;
       _total = _sourceFiltered.length;
       _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
@@ -220,29 +205,13 @@ class _ResponsiveTablePageState extends State<ResponsiveTablePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("RESPONSIVE DATA TABLE"),
+        title: Text("responsive_table"),
         actions: [
           IconButton(
             onPressed: _initializeData,
             icon: Icon(Icons.refresh_sharp),
           ),
         ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("home"),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.storage),
-              title: Text("data"),
-              onTap: () {},
-            )
-          ],
-        ),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -260,11 +229,11 @@ class _ResponsiveTablePageState extends State<ResponsiveTablePage> {
                     shadowColor: Colors.black,
                     clipBehavior: Clip.none,
                     child: ResponsiveDatatable(
-                      title: TextButton.icon(
+                      title: Text('responsive_table'),/*TextButton.icon(
                         onPressed: () => {},
                         icon: Icon(Icons.add),
                         label: Text("new item"),
-                      ),
+                      ),*/
                       reponseScreenSizes: [ScreenSize.xs],
                       actions: [
                         if (_isSearch)

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//https://api.flutter.dev/flutter/material/DataTable-class.html
+
 List<DataRow> rows = List<DataRow>.generate(
   10,
   (index) => DataRow(
@@ -12,7 +14,7 @@ List<DataRow> rows = List<DataRow>.generate(
 );
 
 class DataTablePage extends StatefulWidget {
-  const DataTablePage({super.key});
+  const DataTablePage();
 
   @override
   State<DataTablePage> createState() => _DataTablePageState();
