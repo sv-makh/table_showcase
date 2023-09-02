@@ -1,0 +1,522 @@
+{
+  "data": {
+    "instancesWithRelation": [
+      {
+        "id": "477808189766562874",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-11T11:59:09.691237272Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "80272",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "",
+            "value": "Оплата в чеке",
+            "classAttributeId": "476472485572727016"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": null,
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": null,
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": null,
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": null,
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "477808134292700750",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-11T11:58:56.466033075Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "80267",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "",
+            "value": "Товар в чек",
+            "classAttributeId": "476472485572727016"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": null,
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": null,
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": null,
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": null,
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "477807851219121777",
+        "name": "К",
+        "description": null,
+        "dateCreated": "2023-08-11T11:57:48.974851730Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "80248",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "",
+            "value": "Кассовый чек",
+            "classAttributeId": "476472485572727016"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": null,
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": null,
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": null,
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": null,
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "476472645413458559",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-07T19:32:11.104013046Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "78107",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "",
+            "value": "user",
+            "classAttributeId": "476472485572727016"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": null,
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": null,
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": null,
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": null,
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "481723777721602843",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-22T07:18:18.609563752Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "83985",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "Конфигуратор",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "87799",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": "454536306847929363",
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "83989",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "84122",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "configurator",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "474846329691348162",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-03T07:49:47.222837185Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "77457",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "Мобильный помощник",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "87777",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": "454308607214770376",
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "77455",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "77453",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "474846412272999826",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-03T07:50:06.909274159Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "77469",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "Мобильная касса",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "87788",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": "457433430741265133",
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "77467",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "77465",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "474847070531264185",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-03T07:52:43.849997586Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "77481",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "taoCRM",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "0",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": null,
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "77479",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "описание",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "77477",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "478844413108010877",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-14T08:36:44.588657203Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "80793",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "Общие онтологии",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "87810",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": "454292534196257499",
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "80791",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "80789",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      },
+      {
+        "id": "478844492359383596",
+        "name": null,
+        "description": null,
+        "dateCreated": "2023-08-14T08:37:03.483190339Z",
+        "authorCreated": "nikolay.sigov@gmail.com",
+        "dateUpdated": null,
+        "authorUpdated": null,
+        "attributes": [
+          {
+            "id": "80806",
+            "type": "string",
+            "programName": "name",
+            "name": "Наименование",
+            "description": "00000000-0000-0000-0000-000000000000",
+            "value": "taoStudio",
+            "classAttributeId": "458303699824125146"
+          },
+          {
+            "id": "87821",
+            "type": "string",
+            "programName": "productId",
+            "name": "id не Онтологического продукта",
+            "description": "",
+            "value": "464394529908651961",
+            "classAttributeId": "483987537862024589"
+          },
+          {
+            "id": "80804",
+            "type": "string",
+            "programName": "description",
+            "name": "с:описание продукта",
+            "description": "549aa658-c26c-4cf7-9cca-18cc089a9e3c",
+            "value": "",
+            "classAttributeId": "458303700130310014"
+          },
+          {
+            "id": "80802",
+            "type": "string",
+            "programName": "systemCode",
+            "name": "с:системный код",
+            "description": "ee811145-a3c1-4dfe-bb2e-523a0878481d",
+            "value": "",
+            "classAttributeId": "458303700411327678"
+          }
+        ],
+        "relations": []
+      }
+    ]
+  }
+}

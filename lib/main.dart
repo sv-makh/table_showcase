@@ -4,7 +4,8 @@ import 'package:tables_showcase/pages/data_table_2_page.dart';
 import 'package:tables_showcase/pages/data_table_page.dart';
 import 'package:tables_showcase/pages/davi_page.dart';
 import 'package:tables_showcase/pages/my_home_page.dart';
-import 'package:tables_showcase/pages/pluto_grid_page.dart';
+import 'package:tables_showcase/pages/pluto_grid/pluto_grid_example_page.dart';
+import 'package:tables_showcase/pages/pluto_grid/pluto_grid_page.dart';
 import 'package:tables_showcase/pages/responsive_table_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tables_showcase/pages/scrollable_table_view/scrollable_table_view_page.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         //'/paged_datatable_page': (context) => PagedDatatablePage(),
         '/syncfusion_flutter_datagrid': (context) => SyncfusionPage(),
         '/spreadsheet_ui': (context) => SpreadsheetUiPage(),
-        '/pluto_grid': (context) => PlutoGridPage(),
+        '/pluto_grid': (context) => PlutoGridExamplePage(),
+        '/pluto_grid2': (context) => PlutoGridPage(),
         '/davi': (context) => DaviPage(),
       },
     );

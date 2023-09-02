@@ -6,14 +6,14 @@ import 'package:pluto_grid/pluto_grid.dart';
 /// PlutoGrid Example
 //
 /// For more examples, go to the demo web link on the github below.
-class PlutoGridPage extends StatefulWidget {
-  const PlutoGridPage({Key? key}) : super(key: key);
+class PlutoGridExamplePage extends StatefulWidget {
+  const PlutoGridExamplePage({Key? key}) : super(key: key);
 
   @override
-  State<PlutoGridPage> createState() => _PlutoGridPageState();
+  State<PlutoGridExamplePage> createState() => _PlutoGridExamplePageState();
 }
 
-class _PlutoGridPageState extends State<PlutoGridPage> {
+class _PlutoGridExamplePageState extends State<PlutoGridExamplePage> {
   final List<PlutoColumn> columns = <PlutoColumn>[
     PlutoColumn(
       title: 'Id',
@@ -133,7 +133,7 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
   final List<PlutoRow> rows = [
     PlutoRow(
       cells: {
-        'id': PlutoCell(value: 'user1'),
+        'id':PlutoCell(value: null),//'id': PlutoCell(value: 'user1'),
         'name': PlutoCell(value: 'Mike'),
         'age': PlutoCell(value: 20),
         'role': PlutoCell(value: 'Programmer'),

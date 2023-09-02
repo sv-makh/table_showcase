@@ -9,6 +9,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextButton(
               onPressed: () {
@@ -27,12 +28,6 @@ class MyHomePage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/responsive_table');
-              },
-              child: Text('responsive_table'),
-            ),
-            TextButton(
-              onPressed: () {
                 Navigator.pushNamed(context, '/crud_table');
               },
               child: Text('crud_table'),
@@ -43,13 +38,6 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('scrollable_table_view'),
             ),
-/*            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/paged_datatable_page');
-              },
-              child: Text('paged_datatable_page'),
-            ),*/
-          const Divider(),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/syncfusion_flutter_datagrid');
@@ -62,18 +50,39 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('flutter_spreadsheet_ui'),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/pluto_grid');
-              },
-              child: Text('pluto_grid'),
-            ),
+
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/davi');
               },
               child: Text('davi'),
             ),
+            const Divider(),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/responsive_table');
+              },
+              child: Text('responsive_table'),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/pluto_grid');
+                  },
+                  child: Text('pluto_grid example'),
+                ),
+                SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/pluto_grid2');
+                  },
+                  child: Text('pluto_grid'),
+                ),
+              ],
+            ),
+
           ],
         ),
       ),
