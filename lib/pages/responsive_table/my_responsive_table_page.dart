@@ -72,7 +72,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
     //Future.delayed(Duration(seconds: 0)).then((value) {
       _sourceOriginal.clear();
 
-/*      _sourceOriginal = await DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
+      _sourceOriginal = await DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
         List<Map<String, dynamic>> _source = [];
 
         Map<String, dynamic> data = jsonDecode(rawData);
@@ -85,7 +85,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
 
           for (var attr in attributes) {
             String? name = attr["programName"];
-            String? value = attr["value"];
+            String? value = attr["value"] ?? 'null';
             cells[name!] = value;
           }
 
@@ -93,9 +93,9 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
         }
 
         return _source;
-      });*/
+      });
 
-      _sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
+      //_sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
       _sourceFiltered = _sourceOriginal;
       _total = _sourceFiltered.length;
       _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
@@ -142,13 +142,85 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
 
   double initX = 0;
   double tableWidth = 900;
+  Map<String, String> columnTitles = {
+    'name': 'Наименование',
+    'productId': 'id не Онтологического продукта',
+    'description': 'с:описание продукта',
+    'systemCode': 'с:системный код',
+  };
 
   @override
   void initState() {
     super.initState();
 
-    /// set headers
     _headers = [
+      DatatableHeader(
+        text: columnTitles['name']!,
+        value: 'name',
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
+      DatatableHeader(
+        text: columnTitles['productId']!,
+        value: 'productId',
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
+      DatatableHeader(
+        text: columnTitles['description']!,
+        value: 'description',
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
+      DatatableHeader(
+        text: columnTitles['systemCode']!,
+        value: 'systemCode',
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+        headerBuilder: (value) {
+          return Stack(children: [
+            Container(
+              child: Text(value), // Header text
+              //width: columnWidth,
+              //constraints: BoxConstraints(minWidth: 100),
+            ),
+            Positioned(
+              right: 0,
+              child: GestureDetector(
+                onPanStart: (details) {
+                  print('pan start ${details.globalPosition.dx}');
+                  setState(() {
+                    initX = details.globalPosition.dx;
+                  });
+                },
+                onPanUpdate: (details) {
+                  final increment = details.globalPosition.dx - initX;
+                  final newWidth = tableWidth + increment;
+                  setState(() {
+                    initX = details.globalPosition.dx;
+                    tableWidth = newWidth;
+                  });
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                ),
+              ),
+            ),
+          ]);
+        },
+      ),
+    ];
+
+    /// set headers
+    /*_headers = [
       DatatableHeader(
         text: "ID",
         value: "id",
@@ -256,7 +328,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
             );
           },
           textAlign: TextAlign.center),
-    ];
+    ];*/
 
     _initializeData();
   }
@@ -339,12 +411,12 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
                   selecteds: _selecteds,
                   showSelect: _showSelect,
                   autoHeight: false,
-                  dropContainer: (data) {
+/*                  dropContainer: (data) {
                     if (int.tryParse(data['id'].toString())!.isEven) {
                       return Text("is Even");
                     }
                     return _DropDownContainer(data: data);
-                  },
+                  },*/
                   onChangedRow: (value, header) {
                     /// print(value);
                     /// print(header);
