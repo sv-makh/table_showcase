@@ -19,7 +19,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
   int _total = 100;
   int? _currentPerPage = 10;
   List<bool>? _expanded;
-  String? _searchKey = "id";
+  String? _searchKey = "name";
 
   int _currentPage = 1;
   bool _isSearch = false;
@@ -34,73 +34,48 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
   String? _sortColumn;
   bool _sortAscending = true;
   bool _isLoading = true;
-  bool _showSelect = true;
+  bool _showSelect = false;
   var random = new Random();
 
-  List<Map<String, dynamic>> _generateData({int n = 100}) {
-    final List source = List.filled(n, Random.secure());
-    List<Map<String, dynamic>> temps = [];
-    var i = 1;
-    print(i);
-    // ignore: unused_local_variable
-    for (var data in source) {
-      temps.add({
-        "id": i,
-        "sku": "$i\000$i",
-        "name": "Product $i",
-        "category": "Category-$i",
-        "price": i * 10.00,
-        "cost": "20.00",
-        "margin": "${i}0.20",
-        "in_stock": "${i}0",
-        "alert": "5",
-        "received": [i + 20, 150]
-      });
-      i++;
-    }
-    return temps;
-  }
-
   _initializeData() async {
-    _mockPullData();
+    _pullData();
   }
 
-  _mockPullData() async {
+  _pullData() async {
     _expanded = List.generate(_currentPerPage!, (index) => false);
 
     setState(() => _isLoading = true);
-    //Future.delayed(Duration(seconds: 0)).then((value) {
-      _sourceOriginal.clear();
+    _sourceOriginal.clear();
 
-      _sourceOriginal = await DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
-        List<Map<String, dynamic>> _source = [];
+    _sourceOriginal = await DefaultAssetBundle.of(context)
+        .loadString("jsonformatter.txt")
+        .then((rawData) {
+      List<Map<String, dynamic>> _source = [];
 
-        Map<String, dynamic> data = jsonDecode(rawData);
+      Map<String, dynamic> data = jsonDecode(rawData);
 
-        List<dynamic> instances = data["data"]["instancesWithRelation"];
+      List<dynamic> instances = data["data"]["instancesWithRelation"];
 
-        for (var element in instances) {
-          Map<String, dynamic> cells = {};
-          List<dynamic> attributes = element["attributes"];
+      for (var element in instances) {
+        Map<String, dynamic> cells = {};
+        List<dynamic> attributes = element["attributes"];
 
-          for (var attr in attributes) {
-            String? name = attr["programName"];
-            String? value = attr["value"] ?? 'null';
-            cells[name!] = value;
-          }
-
-          _source.add(cells);
+        for (var attr in attributes) {
+          String? name = attr["programName"];
+          String? value = attr["value"] ?? 'null';
+          cells[name!] = value;
         }
 
-        return _source;
-      });
+        _source.add(cells);
+      }
 
-      //_sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
-      _sourceFiltered = _sourceOriginal;
-      _total = _sourceFiltered.length;
-      _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
-      setState(() => _isLoading = false);
-    //});
+      return _source;
+    });
+
+    _sourceFiltered = _sourceOriginal;
+    _total = _sourceFiltered.length;
+    _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
+    setState(() => _isLoading = false);
   }
 
   _resetData({start = 0}) async {
@@ -141,12 +116,12 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
   }
 
   double initX = 0;
-  double tableWidth = 900;
+  double tableWidth = 1000;
   Map<String, String> columnTitles = {
     'name': 'Наименование',
     'productId': 'id не Онтологического продукта',
-    'description': 'с:описание продукта',
     'systemCode': 'с:системный код',
+    'description': 'с:описание продукта',
   };
 
   @override
@@ -169,24 +144,24 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
         textAlign: TextAlign.center,
       ),
       DatatableHeader(
-        text: columnTitles['description']!,
-        value: 'description',
+        text: columnTitles['systemCode']!,
+        value: 'systemCode',
         show: true,
         sortable: true,
         textAlign: TextAlign.center,
       ),
       DatatableHeader(
-        text: columnTitles['systemCode']!,
-        value: 'systemCode',
+        text: columnTitles['description']!,
+        value: 'description',
         show: true,
         sortable: true,
         textAlign: TextAlign.center,
         headerBuilder: (value) {
           return Stack(children: [
             Container(
-              child: Text(value), // Header text
+              child: Text(columnTitles['description']!), // Header text
               //width: columnWidth,
-              //constraints: BoxConstraints(minWidth: 100),
+              constraints: BoxConstraints(minWidth: 100),
             ),
             Positioned(
               right: 0,
@@ -209,8 +184,8 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
                   margin: EdgeInsets.only(right: 10),
                   width: 10,
                   height: 10,
-                  decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
+                  decoration:
+                      BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
                 ),
               ),
             ),
@@ -218,117 +193,6 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
         },
       ),
     ];
-
-    /// set headers
-    /*_headers = [
-      DatatableHeader(
-        text: "ID",
-        value: "id",
-        show: true,
-        sortable: true,
-        textAlign: TextAlign.center,
-      ),
-      DatatableHeader(
-          text: "Name",
-          value: "name",
-          show: true,
-          flex: 2,
-          sortable: true,
-          editable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "SKU",
-          value: "sku",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
-      DatatableHeader(
-          text: "Category",
-          value: "category",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Price",
-          value: "price",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Margin",
-          value: "margin",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "In Stock",
-          value: "in_stock",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Alert",
-          value: "alert",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.left),
-      DatatableHeader(
-          text: "Received",
-          value: "received",
-          show: true,
-          sortable: false,
-          headerBuilder: (value) {
-            return Stack(children: [
-              Container(
-                child: Text(value), // Header text
-                //width: columnWidth,
-                //constraints: BoxConstraints(minWidth: 100),
-              ),
-              Positioned(
-                right: 0,
-                child: GestureDetector(
-                  onPanStart: (details) {
-                    print('pan start ${details.globalPosition.dx}');
-                    setState(() {
-                      initX = details.globalPosition.dx;
-                    });
-                  },
-                  onPanUpdate: (details) {
-                    final increment = details.globalPosition.dx - initX;
-                    final newWidth = tableWidth + increment;
-                    setState(() {
-                      initX = details.globalPosition.dx;
-                      tableWidth = newWidth;
-                    });
-                  },
-                  child: Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
-                  ),
-                ),
-              ),
-            ]);
-          },
-          sourceBuilder: (value, row) {
-            List list = List.from(value);
-            return Container(
-              child: Column(
-                children: [
-                  Container(
-                    width: 85,
-                    child: LinearProgressIndicator(
-                      value: list.first / list.last,
-                    ),
-                  ),
-                  Text("${list.first} of ${list.last}")
-                ],
-              ),
-            );
-          },
-          textAlign: TextAlign.center),
-    ];*/
 
     _initializeData();
   }
@@ -454,7 +318,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
                   sortAscending: _sortAscending,
                   sortColumn: _sortColumn,
                   isLoading: _isLoading,
-                  onSelect: (value, item) {
+/*                  onSelect: (value, item) {
                     print("$value  $item ");
                     if (value!) {
                       setState(() => _selecteds.add(item));
@@ -470,7 +334,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
                     } else {
                       setState(() => _selecteds.clear());
                     }
-                  },
+                  },*/
                   footers: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 15),
@@ -535,19 +399,19 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                     )
                   ],
-                  headerDecoration: BoxDecoration(
-                      color: Colors.grey,
+/*                  headerDecoration: BoxDecoration(
+                      color: Colors.grey.shade200,
                       border: Border(
-                          bottom: BorderSide(color: Colors.red, width: 1))),
-                  selectedDecoration: BoxDecoration(
+                          bottom: BorderSide(color: Colors.red, width: 1))),*/
+/*                  selectedDecoration: BoxDecoration(
                     border: Border(
                         bottom:
                             BorderSide(color: Colors.green[300]!, width: 1)),
                     color: Colors.green,
-                  ),
-                  headerTextStyle: TextStyle(color: Colors.white),
-                  rowTextStyle: TextStyle(color: Colors.green),
-                  selectedTextStyle: TextStyle(color: Colors.white),
+                  ),*/
+                  //headerTextStyle: TextStyle(color: Colors.white,),
+                  //rowTextStyle: TextStyle(color: Colors.green),
+                  //selectedTextStyle: TextStyle(color: Colors.white),
                 ),
               ),
             ),

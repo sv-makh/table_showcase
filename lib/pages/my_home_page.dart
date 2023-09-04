@@ -67,6 +67,7 @@ class MyHomePage extends StatelessWidget {
                   },
                   child: Text('responsive_table example'),
                 ),
+                Text(' -> '),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/responsive_table2');
@@ -84,6 +85,7 @@ class MyHomePage extends StatelessWidget {
                   },
                   child: Text('pluto_grid example'),
                 ),
+                Text(' -> '),
                 SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
