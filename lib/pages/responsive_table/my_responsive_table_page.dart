@@ -72,7 +72,7 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
     //Future.delayed(Duration(seconds: 0)).then((value) {
       _sourceOriginal.clear();
 
-      _sourceOriginal = await DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
+/*      _sourceOriginal = await DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
         List<Map<String, dynamic>> _source = [];
 
         Map<String, dynamic> data = jsonDecode(rawData);
@@ -93,9 +93,9 @@ class _MyResponsiveTablePageState extends State<MyResponsiveTablePage> {
         }
 
         return _source;
-      });
+      });*/
 
-      //_sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
+      _sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
       _sourceFiltered = _sourceOriginal;
       _total = _sourceFiltered.length;
       _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
