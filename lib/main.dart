@@ -6,7 +6,8 @@ import 'package:tables_showcase/pages/davi_page.dart';
 import 'package:tables_showcase/pages/my_home_page.dart';
 import 'package:tables_showcase/pages/pluto_grid/pluto_grid_example_page.dart';
 import 'package:tables_showcase/pages/pluto_grid/pluto_grid_page.dart';
-import 'package:tables_showcase/pages/responsive_table_page.dart';
+import 'package:tables_showcase/pages/responsive_table/my_responsive_table_page.dart';
+import 'package:tables_showcase/pages/responsive_table/responsive_table_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tables_showcase/pages/scrollable_table_view/scrollable_table_view_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/data_table': (context) => const DataTablePage(),
         '/data_table_2': (context) => const DataTable2Page(),
         '/responsive_table': (context) => ResponsiveTablePage(),
+        '/responsive_table2': (context) => MyResponsiveTablePage(),
         '/crud_table': (context) => CrudTablePage(),
         '/scrollable_table_view': (context) => ScrollableTableViewPage(),
         //'/paged_datatable_page': (context) => PagedDatatablePage(),

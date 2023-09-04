@@ -58,11 +58,22 @@ class MyHomePage extends StatelessWidget {
               child: Text('davi'),
             ),
             const Divider(),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/responsive_table');
-              },
-              child: Text('responsive_table'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/responsive_table');
+                  },
+                  child: Text('responsive_table example'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/responsive_table2');
+                  },
+                  child: Text('responsive_table'),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

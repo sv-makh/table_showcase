@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:darq/darq.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
@@ -11,67 +13,136 @@ class PlutoGridPage extends StatefulWidget {
 }
 
 class _PlutoGridPageState extends State<PlutoGridPage> {
+  late PlutoGridStateManager stateManager;
+  List<PlutoColumn> columns = [];
+  List<PlutoRow> rows = [];
+
   @override
   void initState() {
     super.initState();
+
+    for (var k in columnTitles.keys) {
+      columns.add(PlutoColumn(
+          title: columnTitles[k]!, field: k, type: PlutoColumnType.text()));
+    }
+
+    final List<PlutoRow> _rows = [];
+
+    DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
+      Map<String, dynamic> data = jsonDecode(rawData);
+
+      List<dynamic> instances = data["data"]["instancesWithRelation"];
+
+      for (var element in instances) {
+        Map<String, PlutoCell> cells = {};
+        List<dynamic> attributes = element["attributes"];
+
+        for (var attr in attributes) {
+          String? name = attr["programName"];
+          String? value = attr["value"];
+          cells[name!] = PlutoCell(value: value);
+        }
+        PlutoRow row = PlutoRow(cells: cells);
+        _rows.add(row);
+      }
+
+      return _rows;
+    }).then((fetchedRows) {
+      PlutoGridStateManager.initializeRowsAsync(columns, fetchedRows).then((value) {
+        stateManager.refRows.addAll(value);
+        stateManager.setShowLoading(false);
+      });
+    });
+  }
+
+  Future<List<PlutoRow>> fetchRows() async {
+    final List<PlutoRow> _rows = [];
+
+    DefaultAssetBundle.of(context).loadString("jsonformatter.txt").then((rawData) {
+      Map<String, dynamic> data = jsonDecode(rawData);
+
+      List<dynamic> instances = data["data"]["instancesWithRelation"];
+
+      for (var element in instances) {
+        Map<String, PlutoCell> cells = {};
+        List<dynamic> attributes = element["attributes"];
+
+        for (var attr in attributes) {
+          String? name = attr["programName"];
+          String? value = attr["value"];
+          cells[name!] = PlutoCell(value: value);
+        }
+        PlutoRow row = PlutoRow(cells: cells);
+        _rows.add(row);
+      }
+    });
+    return _rows;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('pluto_grid')),
-      body: FutureBuilder(
-        future: DefaultAssetBundle.of(context).loadString("jsonformatter.txt"),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            Map<String, dynamic> data = jsonDecode(snapshot.data!);
-            _getTableData(data["data"]["instancesWithRelation"]);
-            //return PlutoGrid(columns: columns, rows: rows);
-            return Text(data["data"]["instancesWithRelation"][0]["id"]);
-          } else {
-            return Center(child: Text('something went wrong'));
-          }
+      body: PlutoGrid(
+        columns: columns,
+        rows: rows,
+        onLoaded: (PlutoGridOnLoadedEvent event) {
+          stateManager = event.stateManager;
+          stateManager.setShowLoading(true);
+          event.stateManager.setShowColumnFilter(true);
         },
-      ),
+          configuration: PlutoGridConfiguration(
+              columnFilter: PlutoGridColumnFilterConfig(
+                  filters: const [
+                    //...FilterHelper.defaultFilters,
+                    CustomFilter(),
+                  ],
+                  resolveDefaultColumnFilter: (column, resolver) {
+                    /*if (column.field == 'text') {
+                      return resolver<PlutoFilterTypeContains>()
+                            as PlutoFilterType;
+                      } else if (column.field == 'number') {
+                      return resolver<PlutoFilterTypeGreaterThan>()
+                      as PlutoFilterType;
+                    } else if (column.field == 'date') {
+                      return resolver<PlutoFilterTypeLessThan>()
+                      as PlutoFilterType;
+                    }
+                    else if (column.field == 'select') {
+                  return resolver<ClassYouImplemented>() as PlutoFilterType;
+                }*/
+                    return resolver<CustomFilter>() as PlutoFilterType;
+                    /*return resolver<PlutoFilterTypeContains>()
+                    as PlutoFilterType;*/
+                  }))
+      )
     );
   }
 
   Map<String, String> columnTitles = {
-    'Наименование': 'name',
-    'id не Онтологического продукта': 'id',
-    'с:описание продукта': 'description',
-    'с:системный код': 'code',
+    'name': 'Наименование',
+    'productId': 'id не Онтологического продукта',
+    'description': 'с:описание продукта',
+    'systemCode': 'с:системный код',
   };
 
-  List<PlutoColumn> columns = [];
-  List<PlutoRow> rows = [];
+}
 
-  void _getTableData(List<dynamic> data) {
-    Set<String> columnNames = {};
+class CustomFilter implements PlutoFilterType {
+  @override
+  String get title => 'Custom contains';
 
-    for (var el in data) {
-      Map<String, PlutoCell> cells = {};
+  @override
+  get compare => ({
+    required String? base,
+    required String? search,
+    required PlutoColumn? column,
+  }) {
+    return RegExp(
+      RegExp.escape(search!),
+      caseSensitive: false,
+    ).hasMatch(base!);
+  }; //FilterHelper.compareContains;
 
-      List<dynamic> attributes = el["attributes"];
-      print('ROW');
-      for (var attr in attributes) {
-        String? name = attr["name"];
-        String? value = attr["value"];
-        cells[columnTitles[name]!] = PlutoCell(value: value);
-        print('${columnTitles[name]} - $value');
-        //columnNames.add(name!);
-      }
-
-      print('attributes = ${attributes.length} cells.length = ${cells.length}');
-      PlutoRow row = PlutoRow(cells: cells);
-      rows.add(row);
-      cells.clear();
-    }
-
-    for (var k in columnTitles.keys) {
-      columns.add(PlutoColumn(title: k, field: columnTitles[k]!, type: PlutoColumnType.text()));
-    }
-
-    print('columns ${columns.length}');
-  }
+  const CustomFilter();
 }
