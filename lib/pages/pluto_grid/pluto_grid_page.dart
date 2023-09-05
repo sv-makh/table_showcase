@@ -28,7 +28,6 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
   @override
   void initState() {
     super.initState();
-
   }
 
   bool initGrid = false;
@@ -38,98 +37,81 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
     super.didChangeDependencies();
 
     if (!initGrid) {
-      var columnWidth = MediaQuery.of(context).size.width/columnTitles.length;
-      for (var k in columnTitles.keys) {
-        columns.add(PlutoColumn(
-          title: columnTitles[k]!,
-          field: k,
-          type: PlutoColumnType.text(),
-          width: columnWidth,
-          enableEditingMode: false,
-        ));
-      }
-
-      final List<PlutoRow> _rows = [];
-
-      DefaultAssetBundle.of(context)
-          .loadString("jsonformatter.txt")
-          .then((rawData) {
-        Map<String, dynamic> data = jsonDecode(rawData);
-
-        List<dynamic> instances = data["data"]["instancesWithRelation"];
-
-        for (var element in instances) {
-          Map<String, PlutoCell> cells = {};
-
-          List<dynamic> attributes = element["attributes"];
-          for (var attr in attributes) {
-            String? name = attr["programName"];
-            String? value = attr["value"];
-            cells[name!] = PlutoCell(value: value);
-          }
-
-          PlutoRow row = PlutoRow(cells: cells);
-          _rows.add(row);
-        }
-
-        return _rows;
-      }).then((fetchedRows) {
-        PlutoGridStateManager.initializeRowsAsync(columns, fetchedRows)
-            .then((value) {
-          sourceRows = [...value];
-          stateManager.refRows.addAll(value);
-          stateManager.setShowLoading(false);
-        });
-      });
-      print('initState ${sourceRows.length}');
+      _initialiseGrid();
     }
+  }
+
+  void _initialiseGrid() {
+    var columnWidth = MediaQuery.of(context).size.width / columnTitles.length;
+    for (var k in columnTitles.keys) {
+      columns.add(PlutoColumn(
+        title: columnTitles[k]!,
+        field: k,
+        type: PlutoColumnType.text(),
+        width: columnWidth,
+        enableEditingMode: false,
+      ));
+    }
+
+    fetchRows().then((fetchedRows) {
+      PlutoGridStateManager.initializeRowsAsync(columns, fetchedRows)
+          .then((value) {
+        sourceRows = [...value];
+        stateManager.refRows.addAll(sourceRows);
+        stateManager.setShowLoading(false);
+      });
+    });
   }
 
   Future<List<PlutoRow>> fetchRows() async {
     final List<PlutoRow> _rows = [];
 
-    DefaultAssetBundle.of(context)
-        .loadString("jsonformatter.txt")
-        .then((rawData) {
-      Map<String, dynamic> data = jsonDecode(rawData);
+    var rawData =
+        await DefaultAssetBundle.of(context).loadString("jsonformatter.txt");
 
-      List<dynamic> instances = data["data"]["instancesWithRelation"];
+    Map<String, dynamic> data = jsonDecode(rawData);
 
-      for (var element in instances) {
-        Map<String, PlutoCell> cells = {};
-        List<dynamic> attributes = element["attributes"];
+    List<dynamic> instances = data["data"]["instancesWithRelation"];
 
-        for (var attr in attributes) {
-          String? name = attr["programName"];
-          String value = attr["value"];
-          cells[name!] = PlutoCell(value: value);
-        }
-        PlutoRow row = PlutoRow(cells: cells);
-        _rows.add(row);
+    for (var element in instances) {
+      Map<String, PlutoCell> cells = {};
+
+      List<dynamic> attributes = element["attributes"];
+      for (var attr in attributes) {
+        String? name = attr["programName"];
+        String? value = attr["value"];
+        cells[name!] = PlutoCell(value: value);
       }
-    });
+
+      PlutoRow row = PlutoRow(cells: cells);
+      _rows.add(row);
+    }
+
     return _rows;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('pluto_grid')),
+      appBar: AppBar(title: const Text('pluto_grid')),
       body: LayoutBuilder(
         builder: (context, size) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Container(
+            child: SizedBox(
               width: size.maxWidth,
               height: size.maxHeight,
-              //padding: EdgeInsets.all(10),
               child: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(icon: Icon(Icons.search)),
+                    decoration: const InputDecoration(
+                      icon: Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: Icon(Icons.search),
+                      ),
+                      border: InputBorder.none,
+                    ),
                     onChanged: (value) {
-                      //_filterRows(rows, value);
-                      //rows.clear();
                       setState(() {
                         stateManager.refRows.clear();
                         stateManager.refRows.addAll(_filterRows(value));
@@ -145,21 +127,10 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                         stateManager.setShowLoading(true);
                         //event.stateManager.setShowColumnFilter(true);
                       },
-                      configuration: PlutoGridConfiguration(
-                        columnFilter: PlutoGridColumnFilterConfig(
-                          filters: const [
-                            ...FilterHelper.defaultFilters,
-                            CustomFilter(),
-                          ],
-                          resolveDefaultColumnFilter: (column, resolver) {
-                            if (column.field == 'name') {
-                              return resolver<PlutoFilterTypeContains>()
-                                  as PlutoFilterType;
-                            } else {
-                              return resolver<CustomFilter>()
-                                  as PlutoFilterType;
-                            }
-                          },
+                      configuration: const PlutoGridConfiguration(
+                        style: PlutoGridStyleConfig(
+                          enableCellBorderVertical: false,
+                          enableColumnBorderVertical: false,
                         ),
                       ),
                     ),
@@ -174,7 +145,6 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
   }
 
   List<PlutoRow> _filterRows(String search) {
-    print('_filterRows ${sourceRows.length}');
     Set<PlutoRow> result = {};
     if (search == '') return sourceRows;
     for (var row in sourceRows) {
@@ -184,30 +154,10 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                 .toLowerCase()
                 .contains(search.toLowerCase()))) {
           result.add(row);
-          print('$search added ${cell.value}');
           //break;
         }
       }
     }
     return result.toList();
   }
-}
-
-class CustomFilter implements PlutoFilterType {
-  @override
-  String get title => 'Custom contains';
-
-  @override
-  get compare => ({
-        required String? base,
-        required String? search,
-        required PlutoColumn? column,
-      }) {
-        return RegExp(
-          RegExp.escape(search!),
-          caseSensitive: false,
-        ).hasMatch(base!);
-      }; //FilterHelper.compareContains;
-
-  const CustomFilter();
 }
