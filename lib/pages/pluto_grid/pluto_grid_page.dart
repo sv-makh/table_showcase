@@ -132,6 +132,10 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                           enableColumnBorderVertical: false,
                           columnTextStyle:
                               TextStyle(color: Colors.black, fontSize: 14),
+                          defaultColumnTitlePadding: EdgeInsets.only(
+                            left: 5,
+                            right: 30,
+                          ),
                         ),
                         localeText: PlutoGridLocaleText(),
                       ),
