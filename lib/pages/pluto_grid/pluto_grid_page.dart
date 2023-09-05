@@ -50,6 +50,7 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
         type: PlutoColumnType.text(),
         width: columnWidth,
         enableEditingMode: false,
+        backgroundColor: Colors.grey.shade100,
       ));
     }
 
@@ -124,12 +125,14 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                       onLoaded: (PlutoGridOnLoadedEvent event) {
                         stateManager = event.stateManager;
                         stateManager.setShowLoading(true);
-                        //event.stateManager.setShowColumnFilter(true);
                       },
                       configuration: const PlutoGridConfiguration(
                         style: PlutoGridStyleConfig(
                           enableCellBorderVertical: false,
                           enableColumnBorderVertical: false,
+                          columnTextStyle:
+                              TextStyle(color: Colors.black, fontSize: 14),
+
                         ),
                       ),
                     ),
