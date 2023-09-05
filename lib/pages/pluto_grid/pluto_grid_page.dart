@@ -132,8 +132,8 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                           enableColumnBorderVertical: false,
                           columnTextStyle:
                               TextStyle(color: Colors.black, fontSize: 14),
-
                         ),
+                        localeText: PlutoGridLocaleText(),
                       ),
                     ),
                   ),
