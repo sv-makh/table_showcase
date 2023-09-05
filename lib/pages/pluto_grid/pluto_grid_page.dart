@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:darq/darq.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
+import 'package:tables_showcase/data/pluto_grid/attribute_model.dart';
 
 class PlutoGridPage extends StatefulWidget {
   const PlutoGridPage({super.key});
@@ -64,7 +64,7 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
   }
 
   Future<List<PlutoRow>> fetchRows() async {
-    final List<PlutoRow> _rows = [];
+    final List<PlutoRow> rowsToFetch = [];
 
     var rawData =
         await DefaultAssetBundle.of(context).loadString("jsonformatter.txt");
@@ -78,16 +78,15 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
 
       List<dynamic> attributes = element["attributes"];
       for (var attr in attributes) {
-        String? name = attr["programName"];
-        String? value = attr["value"];
-        cells[name!] = PlutoCell(value: value);
+        AttributeModel model = AttributeModel.fromJson(attr);
+        cells[model.programName!] = PlutoCell(value: model.value);
       }
 
       PlutoRow row = PlutoRow(cells: cells);
-      _rows.add(row);
+      rowsToFetch.add(row);
     }
 
-    return _rows;
+    return rowsToFetch;
   }
 
   @override
@@ -146,7 +145,9 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
 
   List<PlutoRow> _filterRows(String search) {
     Set<PlutoRow> result = {};
+
     if (search == '') return sourceRows;
+
     for (var row in sourceRows) {
       for (var cell in row.cells.values) {
         if ((cell.value != null) &&
