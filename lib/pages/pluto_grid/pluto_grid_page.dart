@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
-import 'package:tables_showcase/data/pluto_grid/attribute_model.dart';
+import 'package:tables_showcase/pages/pluto_grid/attribute_model.dart';
 
 class PlutoGridPage extends StatefulWidget {
   const PlutoGridPage({super.key});
@@ -162,7 +162,6 @@ class _PlutoGridPageState extends State<PlutoGridPage> {
                 .toLowerCase()
                 .contains(search.toLowerCase()))) {
           result.add(row);
-          //break;
         }
       }
     }
